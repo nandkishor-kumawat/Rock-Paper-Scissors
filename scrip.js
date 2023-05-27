@@ -3,6 +3,14 @@ let result = document.querySelector('#result');
 let youChoosed = document.querySelector('#youChoosed');
 let computerChoosed = document.querySelector('#computerChoosed');
 
+let winningCase = {
+    'rock': 'scissor',
+    'paper': 'rock',
+    'scissor': 'paper'
+}
+
+
+
 Array.from(choiceBtn).forEach(element => {
     element.onclick = () => {
         let userChoice = element.textContent;
@@ -12,6 +20,7 @@ Array.from(choiceBtn).forEach(element => {
     }
 });
 
+
 function playGame(a, b) {
     youChoosed.innerText = a;
     computerChoosed.innerText = b;
@@ -19,7 +28,7 @@ function playGame(a, b) {
         result.style.color = 'blue';
         result.innerText = "Game Draw !"
     }
-    else if (userWinning(a, b)) {
+    else if (winningCase[a] == b) {
         result.style.color = 'green';
         result.innerText = "You Won !"
     }
@@ -29,14 +38,3 @@ function playGame(a, b) {
     }
 }
 
-let winningCase = {
-    'rock': 'scissor',
-    'paper': 'rock',
-    'scissor': 'paper'
-}
-
-function userWinning(a, b) {
-    for (const [key, value] of Object.entries(winningCase)) {
-        return ((a === key) && (b === value))
-    }
-}
